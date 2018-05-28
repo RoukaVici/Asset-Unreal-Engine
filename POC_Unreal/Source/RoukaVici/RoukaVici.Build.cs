@@ -21,9 +21,9 @@ public class RoukaVici : ModuleRules
         // To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
 
         PublicDelayLoadDLLs.Add("bluetoothserialport.dll");
-        PublicAdditionalLibraries.Add(@"..\..\Binaries\Win64\bluetoothserialport.lib");
+        PublicAdditionalLibraries.Add(@"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Binaries\Win64\bluetoothserialport.lib");
 
         PublicDelayLoadDLLs.Add("roukavici.dll");
-        PublicAdditionalLibraries.Add(@"..\..\Binaries\Win64\roukavici.lib");
+        PublicAdditionalLibraries.Add(@"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Binaries\Win64\roukavici.lib");
     }
 }
