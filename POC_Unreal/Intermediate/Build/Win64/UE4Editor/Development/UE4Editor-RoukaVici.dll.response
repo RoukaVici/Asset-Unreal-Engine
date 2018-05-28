@@ -1,0 +1,81 @@
+/MANIFEST:NO
+/NOLOGO
+/DEBUG
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/FIXED:No
+/NXCOMPAT
+/STACK:5000000
+/DELAY:UNLOAD
+/DLL
+/PDBALTPATH:%_PDB%
+/OPT:NOREF
+/OPT:NOICF
+/INCREMENTAL:NO
+/ignore:4199
+/ignore:4099
+/DELAYLOAD:"bluetoothserialport.dll"
+/DELAYLOAD:"roukavici.dll"
+/DELAYLOAD:"d3d12.dll"
+/NODEFAULTLIB:"LIBCMT"
+/NODEFAULTLIB:"LIBCPMT"
+/NODEFAULTLIB:"LIBCMTD"
+/NODEFAULTLIB:"LIBCPMTD"
+/NODEFAULTLIB:"MSVCRTD"
+/NODEFAULTLIB:"MSVCPRTD"
+/NODEFAULTLIB:"LIBC"
+/NODEFAULTLIB:"LIBCP"
+/NODEFAULTLIB:"LIBCD"
+/NODEFAULTLIB:"LIBCPD"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\Engine\SharedPCH.Engine.h.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\RoukaVici.cpp.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\RoukaViciController.cpp.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\RoukaViciFinger.cpp.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\VibrationPatternParser.cpp.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\VibrationSelectionWidget.cpp.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\RoukaVici.init.gen.cpp.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\RoukaViciController.gen.cpp.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\RoukaViciFinger.gen.cpp.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\VibrationPatternParser.gen.cpp.obj"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\VibrationSelectionWidget.gen.cpp.obj"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\RoukaVici\PCLaunch.rc.res"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+"delayimp.lib"
+"wininet.lib"
+"rpcrt4.lib"
+"ws2_32.lib"
+"dbghelp.lib"
+"comctl32.lib"
+"Winmm.lib"
+"kernel32.lib"
+"user32.lib"
+"gdi32.lib"
+"winspool.lib"
+"comdlg32.lib"
+"advapi32.lib"
+"shell32.lib"
+"ole32.lib"
+"oleaut32.lib"
+"uuid.lib"
+"odbc32.lib"
+"odbccp32.lib"
+"netapi32.lib"
+"iphlpapi.lib"
+"setupapi.lib"
+"dwmapi.lib"
+"imm32.lib"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Binaries\Win64\bluetoothserialport.lib"
+"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Binaries\Win64\roukavici.lib"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Slate.lib"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-SlateCore.lib"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Engine.lib"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-UMG.lib"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Core.lib"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-CoreUObject.lib"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-InputCore.lib"
+"C:\Program Files\Epic Games\UE_4.19\Engine\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-Json.lib"
+/OUT:"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Binaries\Win64\UE4Editor-RoukaVici.dll"
+/IMPLIB:"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-RoukaVici.suppressed.lib"
+/PDB:"C:\Users\Paul\Documents\Rendu\POC_Unreal_Engine\trunk\POC_Unreal\Binaries\Win64\UE4Editor-RoukaVici.pdb"
+/ignore:4078

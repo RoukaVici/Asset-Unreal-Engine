@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\RoukaVici.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{6FFADCA3-3B7D-4848-A541-55C61BA7E1DD}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\RoukaVici.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\RoukaViciEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{75A461D9-84A6-4D72-8C84-23B899576672}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\RoukaVici">
+			<UniqueIdentifier>{E3219D8D-62DB-427A-9E32-26E95F8B0B49}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\RoukaVici\exported.hh">
+			<Filter>Source\RoukaVici</Filter>
+		</None >
+		<None Include="..\..\Source\RoukaVici\RoukaVici.Build.cs">
+			<Filter>Source\RoukaVici</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\RoukaVici\RoukaVici.cpp">
+			<Filter>Source\RoukaVici</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RoukaVici\RoukaVici.h">
+			<Filter>Source\RoukaVici</Filter>
+		</ClInclude >
+		<None Include="..\..\Source\RoukaVici\RoukaVici.hh">
+			<Filter>Source\RoukaVici</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\RoukaVici\RoukaViciController.cpp">
+			<Filter>Source\RoukaVici</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RoukaVici\RoukaViciController.h">
+			<Filter>Source\RoukaVici</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\RoukaVici\RoukaViciFinger.cpp">
+			<Filter>Source\RoukaVici</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RoukaVici\RoukaViciFinger.h">
+			<Filter>Source\RoukaVici</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\RoukaVici\VibrationPatternParser.cpp">
+			<Filter>Source\RoukaVici</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RoukaVici\VibrationPatternParser.h">
+			<Filter>Source\RoukaVici</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\RoukaVici\VibrationSelectionWidget.cpp">
+			<Filter>Source\RoukaVici</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\RoukaVici\VibrationSelectionWidget.h">
+			<Filter>Source\RoukaVici</Filter>
+		</ClInclude >
+		<Filter Include="Source\RoukaVici\VibrationStyles">
+			<UniqueIdentifier>{9EE5DCEF-E338-4C32-A08E-DADAA21383E0}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\RoukaVici\VibrationStyles\Decreasing.json">
+			<Filter>Source\RoukaVici\VibrationStyles</Filter>
+		</None >
+		<None Include="..\..\Source\RoukaVici\VibrationStyles\Increasing.json">
+			<Filter>Source\RoukaVici\VibrationStyles</Filter>
+		</None >
+		<None Include="..\..\Source\RoukaVici\VibrationStyles\Sinusoid.json">
+			<Filter>Source\RoukaVici\VibrationStyles</Filter>
+		</None >
+	</ItemGroup>
+</Project>
