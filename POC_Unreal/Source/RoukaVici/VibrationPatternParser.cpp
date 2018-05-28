@@ -1,0 +1,124 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#include "VibrationPatternParser.h"
+#include "Json.h"
+
+#include "VibrationSelectionWidget.h"
+#include "RoukaViciController.h"
+
+
+// Sets default values
+AVibrationPatternParser::AVibrationPatternParser()
+{
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
+
+}
+
+void AVibrationPatternParser::parseData()
+{
+	for (FFilePath path : pathConfig)
+	{
+		FString data;
+		FFileHelper::LoadFileToString(data, *path.FilePath);
+		TSharedPtr<FJsonObject> parsedObject;
+		TSharedRef< TJsonReader<> > reader = TJsonReaderFactory<>::Create(data);
+
+		FmPattern elemP;
+
+		if (FJsonSerializer::Deserialize(reader, parsedObject))
+		{
+			FString name = parsedObject->GetStringField(TEXT("name"));
+			float delay = parsedObject->GetNumberField(TEXT("delay"));
+			TArray<TSharedPtr<FJsonValue> > fingers = parsedObject->GetArrayField(TEXT("fingers"));
+			if (name.Len() == 0 || delay <= 0 || fingers.Num() != 10)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Your config file must have a valid name, a positive delay and 10 fingers"));
+				continue;
+			}
+			int i = 0;
+			elemP.configName = name;
+			elemP.delay = delay;
+			for (TSharedPtr<FJsonValue> f : fingers)
+			{
+				FmFinger elemF;
+				const TSharedPtr<FJsonObject> *fo;
+				if (!f->TryGetObject(fo))
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Invalid finger format"));
+					continue;
+				}
+				int id = (*fo)->GetIntegerField(TEXT("id"));
+				if (id != i)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Invalid finger ID, make sure it's in the right order (0 to 9)"));
+					continue;
+				}
+				elemF.ID = id;
+				TArray<TSharedPtr<FJsonValue> > fon = (*fo)->GetArrayField(TEXT("pattern"));
+				if (fon.Num() == 0)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Your config file must have a positive pattern size"));
+					continue ;
+				}
+				for (TSharedPtr<FJsonValue> fonb : fon)
+				{
+					int out;
+					if (fonb->TryGetNumber(out))
+						elemF.pattern.Add(out);
+				}
+				elemP.fingers[i++] = elemF;
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Invalid file / file extension"));
+			continue ;
+		}
+		patterns.Add(elemP);
+	}
+}
+
+// Called when the game starts or when spawned
+void AVibrationPatternParser::BeginPlay()
+{
+	Super::BeginPlay();
+
+	parseData();
+
+	if (patterns.Num() == 0)
+	{
+		FmPattern elemP;
+		elemP.configName = "Default";
+		elemP.delay = 0.5f;
+		for (int i = 0 ; i < 10 ; ++i)
+		{
+			FmFinger elemF;
+			elemF.ID = i;
+			elemF.pattern.Add(80);
+			elemF.pattern.Add(90);
+			elemP.fingers[i] = elemF;
+
+		}
+		patterns.Add(elemP);
+	}
+
+	controller->patterns = patterns;
+
+	UVibrationSelectionWidget *widgetInstance = CreateWidget<UVibrationSelectionWidget>(GetGameInstance(), widgetTemplate);
+	if (widgetInstance)
+	{
+		widgetInstance->AddToViewport();
+		widgetInstance->Patterns = patterns;
+		widgetInstance->controller = controller;
+		widgetInstance->updateUI = true;
+	}
+}
+
+// Called every frame
+void AVibrationPatternParser::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+}
+

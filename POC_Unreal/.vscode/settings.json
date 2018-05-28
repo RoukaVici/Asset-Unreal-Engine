@@ -1,0 +1,10 @@
+{
+	"files.exclude": {
+		"/Users/louisjahn/Documents/UnrealProjects/github/POC-Unreal-Engine 4.19/.git": true,
+		"/Users/louisjahn/Documents/UnrealProjects/github/POC-Unreal-Engine 4.19/.vscode": true,
+		"/Users/louisjahn/Documents/UnrealProjects/github/POC-Unreal-Engine 4.19/Content": true,
+		"/Users/louisjahn/Documents/UnrealProjects/github/POC-Unreal-Engine 4.19/Intermediate": true,
+		"/Users/louisjahn/Documents/UnrealProjects/github/POC-Unreal-Engine 4.19/RoukaVici.xcworkspace": true,
+		"/Users/louisjahn/Documents/UnrealProjects/github/POC-Unreal-Engine 4.19/Saved": true
+	}
+}
