@@ -73,7 +73,7 @@ public:
 
 private:
 	//static ARoukaViciController *_instance;
-	//RoukaVici*	rv;
+	RoukaVici*	rv;
 
 
 };

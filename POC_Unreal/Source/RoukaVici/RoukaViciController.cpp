@@ -13,7 +13,7 @@ ARoukaViciController::ARoukaViciController()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	//rv = new RoukaVici();
+	rv = new RoukaVici();
 }
 
 // Called when the game starts or when spawned
@@ -154,7 +154,7 @@ void ARoukaViciController::setVibrationPattern(int ID)
 // }
 
 
-//int	ARoukaViciController::Vibrate(char motor, char intensity)
-//{
-//	return rv->Vibrate(motor, intensity);
-//}
+int	ARoukaViciController::Vibrate(char motor, char intensity)
+{
+	return rv->Vibrate(motor, intensity);
+}
