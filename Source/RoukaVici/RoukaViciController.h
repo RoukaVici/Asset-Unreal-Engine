@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "RoukaVici.hh"
 #include "GameFramework/Actor.h"
 #include "VibrationPatternParser.h"
+#include "LibRoukaVici.h"
 #include "RoukaViciController.generated.h"
 
 /**
@@ -36,6 +36,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void BeginDestroy() override;
+
 	//UFUNCTION(BlueprintCallable, Category = "RoukaViciController")
 	//void sendVibrationCommand(int finderID);
 
@@ -47,9 +49,6 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "RoukaViciController")
 	void setVibrationPattern(int patternID);
-
-	//UFUNCTION(BlueprintCallable, Category = "RoukaViciController")
-	//void stopVibrationCommand(int finderID);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TArray<FmPattern> patterns; ///< The array of patterns registered
@@ -69,12 +68,8 @@ public:
 	//UFUNCTION(BlueprintCallable, Category="RoukaViciController")
 	//static ARoukaViciController *Instance();
 
-	int Vibrate(char, char);
-
 private:
 	//static ARoukaViciController *_instance;
-	RoukaVici*	rv;
-
+	//ULibRoukaVici lib;
 
 };
-

@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "RoukaViciFinger.h"
+#include "LibRoukaVici.h"
 
 
 // Sets default values
@@ -31,7 +32,7 @@ void ARoukaViciFinger::Tick(float DeltaTime)
 		UE_LOG(LogTemp, Warning, TEXT("Vibrating finger ID %d for an intensity of %d"), ID, currentStep);
         FString serialized = "Vibrating finger ID " + FString::FromInt(ID) + " intensity of " + FString::FromInt(currentStep) + '\n';
         
-		controller->Vibrate(ID, 255 * (currentStep / 100));
+		ULibRoukaVici::callVibrate(ID, 255 * (currentStep / 100));
 
 		currentStepIndex = (currentStepIndex == controller->patterns[controller->patternID].fingers[ID].pattern.Num() - 1 ? 0 : ++currentStepIndex);
 		mTime = 0;
