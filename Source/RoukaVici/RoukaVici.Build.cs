@@ -8,7 +8,7 @@ public class RoukaVici : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Json", "UMG" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Json", "JSonUtilities", "UMG" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

@@ -19,7 +19,13 @@ bool ULibRoukaVici::loadLib()
 		return true;
 	}
 
-	FString filePath = *FPaths::ProjectPluginsDir();
+	FString filePath;
+
+	if (GWorld && GWorld->WorldType == EWorldType::PIE)
+		filePath = FPaths::ProjectPluginsDir();
+	else
+		filePath = "Plugins/";
+
 	filePath += "RoukaVici/";
 	FString filePathBT;
 	FString filePathLib;

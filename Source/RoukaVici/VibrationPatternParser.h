@@ -21,7 +21,7 @@ struct FmFinger
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(VisibleAnywhere)
-	int ID; ///< ID of the finger
+	int id; ///< ID of the finger
 
 	UPROPERTY(BluePrintReadWrite, VisibleAnywhere)
 	TArray<int> pattern; ///< Array of value representing different intensities
@@ -34,7 +34,7 @@ struct FmPattern
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-	FString configName; ///< Name of the pattern
+	FString name; ///< Name of the pattern
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	float delay; ///< delay between each intensities
@@ -71,9 +71,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	ARoukaViciController *controller;
-
-	UPROPERTY(EditAnywhere)
-	TArray<FFilePath> pathConfig; ///< Array of path of config files
 
 	UPROPERTY(VisibleAnywhere)
 	TArray<FmPattern> patterns; ///< Array of parsed patterns

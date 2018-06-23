@@ -2,6 +2,7 @@
 
 #include "VibrationPatternParser.h"
 #include "Json.h"
+#include "Runtime/JsonUtilities/Public/JsonObjectConverter.h"
 
 #include "VibrationSelectionWidget.h"
 #include "RoukaViciController.h"
@@ -17,10 +18,46 @@ AVibrationPatternParser::AVibrationPatternParser()
 
 void AVibrationPatternParser::parseData()
 {
-	for (FFilePath path : pathConfig)
+	FString folderPath;
+	if (GetWorld()->WorldType == EWorldType::PIE)
 	{
+		folderPath = FPaths::ProjectDir();
+		FPaths::NormalizeDirectoryName(folderPath);
+	}
+	folderPath += "/Vibration Patterns/";
+
+	if (!FPaths::FileExists(folderPath + "Default.json"))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Vibration Patterns not found, creating default profile"));
+
+		FmPattern elemP;
+		elemP.name = "Default";
+		elemP.delay = 0.5f;
+		for (int i = 0; i < 10; ++i)
+		{
+			FmFinger elemF;
+			elemF.id = i;
+			elemF.pattern.Add(80);
+			elemF.pattern.Add(90);
+			elemP.fingers[i] = elemF;
+
+		}
+
+		FString OutputString;
+		FJsonObjectConverter::UStructToJsonObjectString(elemP, OutputString, 0, 0, 0, NULL, true);
+		FFileHelper::SaveStringToFile(OutputString, *(folderPath + "Default.json"));
+	}
+
+	TArray<FString> Files;
+	IFileManager& FileManager = IFileManager::Get();
+	FileManager.FindFiles(Files, *(folderPath + "*.json"), true, false);
+
+
+	for (FString path : Files)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Path: %s"), *(folderPath + path));
 		FString data;
-		FFileHelper::LoadFileToString(data, *path.FilePath);
+		FFileHelper::LoadFileToString(data, *(folderPath + path));
 		TSharedPtr<FJsonObject> parsedObject;
 		TSharedRef< TJsonReader<> > reader = TJsonReaderFactory<>::Create(data);
 
@@ -37,7 +74,7 @@ void AVibrationPatternParser::parseData()
 				continue;
 			}
 			int i = 0;
-			elemP.configName = name;
+			elemP.name = name;
 			elemP.delay = delay;
 			for (TSharedPtr<FJsonValue> f : fingers)
 			{
@@ -54,7 +91,7 @@ void AVibrationPatternParser::parseData()
 					UE_LOG(LogTemp, Warning, TEXT("Invalid finger ID, make sure it's in the right order (0 to 9)"));
 					continue;
 				}
-				elemF.ID = id;
+				elemF.id = id;
 				TArray<TSharedPtr<FJsonValue> > fon = (*fo)->GetArrayField(TEXT("pattern"));
 				if (fon.Num() == 0)
 				{
@@ -85,23 +122,6 @@ void AVibrationPatternParser::BeginPlay()
 	Super::BeginPlay();
 
 	parseData();
-
-	if (patterns.Num() == 0)
-	{
-		FmPattern elemP;
-		elemP.configName = "Default";
-		elemP.delay = 0.5f;
-		for (int i = 0 ; i < 10 ; ++i)
-		{
-			FmFinger elemF;
-			elemF.ID = i;
-			elemF.pattern.Add(80);
-			elemF.pattern.Add(90);
-			elemP.fingers[i] = elemF;
-
-		}
-		patterns.Add(elemP);
-	}
 
 	controller->patterns = patterns;
 
