@@ -28,8 +28,8 @@ bool ULibRoukaVici::loadLib()
 	filePathBT = filePath + "bluetoothserialport.dll";
 	filePathLib = filePath + "roukavici.dll";
 	#elif PLATFORM_MAC
-	filePathBT = filePath + "bluetoothserialport.dylib";
-	filePathLib = filePath + "roukavici.dylib";
+	filePathBT = filePath + "libbluetoothserialport.dylib";
+	filePathLib = filePath + "libroukavici.dylib";
 	#else
 	filePathBT = filePath + "libbluetoothserialport.so";
 	filePathLib = filePath + "libroukavici.so";
@@ -73,9 +73,14 @@ int ULibRoukaVici::initLib()
 void ULibRoukaVici::callStopLib()
 {
 	if (ptr_StopRVici)
-		ptr_StopRVici;
-	FPlatformProcess::FreeDllHandle(libHandler);
-	FPlatformProcess::FreeDllHandle(libBTHandler);
+		ptr_StopRVici();
+    
+    if (libHandler)
+        FPlatformProcess::FreeDllHandle(libHandler);
+    
+    if (libBTHandler)
+        FPlatformProcess::FreeDllHandle(libBTHandler);
+    
 	libHandler = NULL;
 	libBTHandler = NULL;
 }
