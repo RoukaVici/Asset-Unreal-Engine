@@ -35,20 +35,5 @@ void ARoukaViciController::BeginDestroy()
 
 void ARoukaViciController::setVibrationPattern(int ID)
 {
-	UE_LOG(LogTemp, Warning, TEXT("New pattern: %d"), ID);
 	patternID = ID;
 }
-
-// ARoukaViciController *ARoukaViciController::Instance()
-// {
-// 	if (!_instance)
-// 	{
-// 		FVector Location(0.0f, 0.0f, 0.0f);
-// 		FRotator Rotation(0.0f, 0.0f, 0.0f);
-// 		FActorSpawnParameters SpawnInfo;
-// 		UWorld *world = GEngine->GameViewport->GetWorld();
-// 		if (world)
-//  		_instance = world->SpawnActor<ARoukaViciController>(Location, Rotation, SpawnInfo);
-// 	}
-// 	return _instance;
-// }

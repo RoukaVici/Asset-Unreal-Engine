@@ -31,6 +31,9 @@
 * \version $Revision: 1.1 $
 *
 */
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCreateUIDelegate);
+
 UCLASS()
 class ROUKAVICI_API UVibrationSelectionWidget : public UUserWidget
 {
@@ -39,7 +42,7 @@ class ROUKAVICI_API UVibrationSelectionWidget : public UUserWidget
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Vibration selecton widget")
-		FString mWidget;
+	FString mWidget;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FmPattern> Patterns; ///< The array of the registered patterns
@@ -49,6 +52,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	ARoukaViciController *controller;
+
+
+	UPROPERTY(BlueprintAssignable, Category = "CreateUI")
+	FCreateUIDelegate CreateUIDelegate;
 
 protected:
 

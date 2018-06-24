@@ -38,9 +38,6 @@ public:
 
 	virtual void BeginDestroy() override;
 
-	//UFUNCTION(BlueprintCallable, Category = "RoukaViciController")
-	//void sendVibrationCommand(int finderID);
-
 	/**
 	* Set the vibration pattern ID 
 	*
@@ -64,12 +61,5 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	int patternID = 0; ///< the ID of the actual pattern
-
-	//UFUNCTION(BlueprintCallable, Category="RoukaViciController")
-	//static ARoukaViciController *Instance();
-
-private:
-	//static ARoukaViciController *_instance;
-	//ULibRoukaVici lib;
 
 };

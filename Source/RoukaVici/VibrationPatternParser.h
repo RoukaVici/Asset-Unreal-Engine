@@ -86,8 +86,8 @@ public:
 private:
 
 	/**
-	* Parse the config files to get patterns. You must fill the file paths
-	* inside the property window.
+	* Parse the config files to get patterns. The folder is located
+	* at the root of the project.
 	* 
 	*/
 	void parseData();

@@ -55,7 +55,6 @@ void AVibrationPatternParser::parseData()
 
 	for (FString path : Files)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Path: %s"), *(folderPath + path));
 		FString data;
 		FFileHelper::LoadFileToString(data, *(folderPath + path));
 		TSharedPtr<FJsonObject> parsedObject;
@@ -131,7 +130,7 @@ void AVibrationPatternParser::BeginPlay()
 		widgetInstance->AddToViewport();
 		widgetInstance->Patterns = patterns;
 		widgetInstance->controller = controller;
-		widgetInstance->updateUI = true;
+		widgetInstance->CreateUIDelegate.Broadcast();
 	}
 }
 
