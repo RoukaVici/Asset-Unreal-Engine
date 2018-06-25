@@ -8,6 +8,24 @@
 #include "LibRoukaVici.h"
 #include "RoukaViciController.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateUIDelegate);
+
+UENUM(BlueprintType)
+enum class EMotorNumber : uint8
+{
+	MN_LeftPinky 	UMETA(DisplayName = "Left Pinky Motor"),
+	MN_LeftRing 	UMETA(DisplayName = "Left Ring Motor"),
+	MN_LeftMiddle	UMETA(DisplayName = "Left Middle Motor"),
+	MN_LeftIndex	UMETA(DisplayName = "Left Index Motor"),
+	MN_LeftThumb	UMETA(DisplayName = "Left Thumb Motor"),
+	MN_RightThumb 	UMETA(DisplayName = "Right Thumb Motor"),
+	MN_RightIndex 	UMETA(DisplayName = "Right Index Motor"),
+	MN_RightMiddle	UMETA(DisplayName = "Right Middle Motor"),
+	MN_RightRing	UMETA(DisplayName = "Right Ring Motor"),
+	MN_RightPinky	UMETA(DisplayName = "Right Pinky Motor"),
+	MN_LastMotor
+};
+
 /**
 * \class ARoukaViciController
 *
@@ -59,7 +77,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	static	TArray<int>	getFingerPattern(FmPattern pattern, int FingerId) { return pattern.fingers[FingerId].pattern; }
 
+	UFUNCTION(BlueprintCallable)
+	void savePattern(const FmPattern &pattern, int eidtedPattern);
+
 	UPROPERTY(BlueprintReadOnly)
 	int patternID = 0; ///< the ID of the actual pattern
 
+	UPROPERTY(BlueprintAssignable, Category = "Update UI")
+	FUpdateUIDelegate UpdateUIDelegate;
 };

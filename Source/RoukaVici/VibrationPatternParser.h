@@ -20,7 +20,7 @@ struct FmFinger
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	int id; ///< ID of the finger
 
 	UPROPERTY(BluePrintReadWrite, VisibleAnywhere)
@@ -33,14 +33,16 @@ struct FmPattern
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+	FmPattern();
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	FString name; ///< Name of the pattern
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	float delay; ///< delay between each intensities
 
-	UPROPERTY(VisibleAnywhere)
-	FmFinger fingers[10]; ///< List of fingers for the pattern
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	TArray<FmFinger> fingers; ///< List of fingers for the pattern
 };
 
 

@@ -34,6 +34,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCreateUIDelegate);
 
+
 UCLASS()
 class ROUKAVICI_API UVibrationSelectionWidget : public UUserWidget
 {
@@ -53,8 +54,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	ARoukaViciController *controller;
 
-
-	UPROPERTY(BlueprintAssignable, Category = "CreateUI")
+	UPROPERTY(BlueprintAssignable, Category = "Create UI")
 	FCreateUIDelegate CreateUIDelegate;
 
 protected:

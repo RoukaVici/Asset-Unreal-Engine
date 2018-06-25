@@ -16,6 +16,14 @@ AVibrationPatternParser::AVibrationPatternParser()
 
 }
 
+FmPattern::FmPattern()
+{
+	name = "";
+	delay = 0;
+	FmFinger elem;
+	fingers.Init(elem, (int)EMotorNumber::MN_LastMotor);
+}
+
 void AVibrationPatternParser::parseData()
 {
 	FString folderPath;
@@ -67,7 +75,7 @@ void AVibrationPatternParser::parseData()
 			FString name = parsedObject->GetStringField(TEXT("name"));
 			float delay = parsedObject->GetNumberField(TEXT("delay"));
 			TArray<TSharedPtr<FJsonValue> > fingers = parsedObject->GetArrayField(TEXT("fingers"));
-			if (name.Len() == 0 || delay <= 0 || fingers.Num() != 10)
+			if (name.Len() == 0 || delay <= 0 || fingers.Num() != (int)EMotorNumber::MN_LastMotor)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("Your config file must have a valid name, a positive delay and 10 fingers"));
 				continue;
