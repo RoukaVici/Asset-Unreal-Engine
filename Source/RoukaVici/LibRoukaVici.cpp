@@ -13,23 +13,26 @@ SetLogMode ptr_SetLogMode;
 
 bool ULibRoukaVici::loadLib()
 {
+	// Check if the lib is already loaded
 	if (libHandler != NULL)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Lib RoukaVici already loaded"));
 		return true;
 	}
 
+	// Create the path for the external libraries
+	// The result depends whether if we are in the editor or in the built release.
 	FString filePath;
-
 	if (GWorld && GWorld->WorldType == EWorldType::PIE)
 		filePath = FPaths::ProjectPluginsDir();
 	else
 		filePath = "Plugins/";
 
 	filePath += "RoukaVici/";
+	
+	// It will also vary with the platform.
 	FString filePathBT;
 	FString filePathLib;
-
 	#if PLATFORM_WINDOWS
 	filePathBT = filePath + "bluetoothserialport.dll";
 	filePathLib = filePath + "roukavici.dll";
@@ -41,11 +44,19 @@ bool ULibRoukaVici::loadLib()
 	filePathLib = filePath + "libroukavici.so";
 	#endif
 
+	// Check if the bluetooth library exists
 	if (FPaths::FileExists(filePathBT))
 		libBTHandler = FPlatformProcess::GetDllHandle(*filePathBT);
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Library Bluetooth not found, make sure that it is placed at the root of your project folder"));
+		return false;
+	}
 
+	// Check if the RoukaVici Library exists.
 	if (FPaths::FileExists(filePathLib))
 	{
+		// Load the lib handler pointer and its functions
 		libHandler = FPlatformProcess::GetDllHandle(*filePathLib);
 		if (libHandler != NULL)
 		{
@@ -64,6 +75,7 @@ bool ULibRoukaVici::loadLib()
 			return true;
 		}
 	}
+
 	UE_LOG(LogTemp, Warning, TEXT("Lib RoukaVici couldn't be loaded"));
 
 	return false;

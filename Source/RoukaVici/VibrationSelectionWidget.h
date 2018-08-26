@@ -42,24 +42,20 @@ class ROUKAVICI_API UVibrationSelectionWidget : public UUserWidget
 	
 public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Vibration selecton widget")
-	FString mWidget;
+	// The arrat of registered patterns
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RoukaVici UI")
+	TArray<FmPattern> patterns;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FmPattern> Patterns; ///< The array of the registered patterns
+	// A pointer to the manager. Used for neater and cleaner Blueprints / C++ code.
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RoukaVici UI")
+	URoukaViciManager *manager;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool updateUI = false; ///< A boolean that indicates if the UI has been updated
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ARoukaViciController *controller;
-
-	UPROPERTY(BlueprintAssignable, Category = "Create UI")
-	FCreateUIDelegate CreateUIDelegate;
+	// An event dispatcher used to initalize content in the UI (After pattern parsing)
+	UPROPERTY(BlueprintAssignable, Category = "RoukaVici UI")
+	FCreateUIDelegate createUIDelegate;
 
 protected:
 
 	virtual void NativeConstruct() override;
 	
-private:
 };

@@ -9,26 +9,30 @@
 #include "VibrationPatternParser.generated.h"
 
 class UVibrationSelectionWidget;
-class ARoukaViciController;
+class URoukaViciManager;
 
 /**
 * This struct store pattern information
-* for a specific finger
+* for the behavior a specific motor
 */
 USTRUCT(BlueprintType)
-struct FmFinger
+struct FmMotor
 {
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
-	int id; ///< ID of the finger
+	int id; ///< ID of the motor
 
 	UPROPERTY(BluePrintReadWrite, VisibleAnywhere)
 	TArray<int> pattern; ///< Array of value representing different intensities
 };
 
-/// This struct store finger patterns with the delay
 USTRUCT(BlueprintType)
+/**
+ * @brief This struct stores motors patterns
+ * with a name and a delay
+ * 
+ */
 struct FmPattern
 {
 	GENERATED_USTRUCT_BODY()
@@ -42,55 +46,48 @@ struct FmPattern
 	float delay; ///< delay between each intensities
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
-	TArray<FmFinger> fingers; ///< List of fingers for the pattern
+	TArray<FmMotor> fingers; ///< List of fingers for the pattern
 };
 
-
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 /**
-* \class AVibrationPatternParser
-*
-* \brief Provide an example
-*
-* This class parse the JSON files to 
-* get each patterns informations for each fingers
-*
-* \author $Author: Louis Jahn $
-*
-* \version $Revision: 1.1 $
-*
-*/
-UCLASS()
-class ROUKAVICI_API AVibrationPatternParser : public AActor
+ * @brief This class parses the JSON files to 
+ * get each patterns informations for each motor.
+ * The parsed elements will be transmitted to the manager.
+ * It will also instantiate the widget to personalize
+ * these patterns.
+ * 
+ */
+class ROUKAVICI_API UVibrationPatternParser : public UActorComponent
 {
 	GENERATED_BODY()
 	
 public:	
-	/// Sets default values for this actor's properties
-	AVibrationPatternParser();
+    
+    UVibrationPatternParser();
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI)
+	// Called every frame
+    virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	// The type of Widget to instantiated for the UI
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "RoukaVici UI")
 	TSubclassOf<UUserWidget> widgetTemplate;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ARoukaViciController *controller;
-
-	UPROPERTY(VisibleAnywhere)
-	TArray<FmPattern> patterns; ///< Array of parsed patterns
+	// Array of parsed patterns
+	UPROPERTY(VisibleAnywhere, Category = "RoukaVici UI")
+	TArray<FmPattern> patterns;
 
 protected:
 	/// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	/// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 private:
 
 	/**
-	* Parse the config files to get patterns. The folder is located
-	* at the root of the project.
-	* 
-	*/
+	 * @brief Parse the config files to get patterns.
+	 * The folder is located at the root of the project.
+	 * Called internaly at the instantiation of the object
+	 * 
+	 */
 	void parseData();
 };
