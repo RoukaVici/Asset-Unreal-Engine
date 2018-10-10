@@ -4,9 +4,16 @@
 #include "RoukaVici/include/RoukaViciAPI.h"
 
 
+void CallbackDebug(const char *str)
+{
+	FString msg(str);
+	UE_LOG(LogTemp, Warning, TEXT("RVLog: %s"), *msg);
+}
+
 bool ULibRoukaVici::loadLib()
 {
-	SetLogMode(1);
+	SetLogMode(2);
+	RegisterDebugCallback(&CallbackDebug);
 
 	if (InitRVici())
 	{
