@@ -44,28 +44,23 @@ public class RoukaVici : ModuleRules
 
         string platformName = Target.Platform.ToString();
         string libFolder = Path.Combine(ModuleDirectory, "lib");
-        string dynExt = "", staticExt = "";
 
-        if (Target.Platform == UnrealTargetPlatform.Win64)
+        if (Target.Platform == UnrealTargetPlatform.Win64 || Target.Platform == UnrealTargetPlatform.Win32)
         {
-            dynExt = ".dll";
-            staticExt = ".lib";
+            PublicLibraryPaths.Add(Path.Combine(libFolder, platformName));
+            PublicAdditionalLibraries.Add("roukavici.lib");
+            PublicAdditionalLibraries.Add("bluetoothserialport.lib");
+            CopyToProjectBinaries(Path.Combine(libFolder, string.Concat(platformName, "/roukavici.dll")), Target);
         }
         else if (Target.Platform == UnrealTargetPlatform.Linux)
         {
-            dynExt = ".so";
-            staticExt = ".a";
+
         }
         else if (Target.Platform == UnrealTargetPlatform.Mac)
         {
-            dynExt = ".dylib";
-            staticExt = ".a";
+            PublicAdditionalLibraries.Add(Path.Combine(libFolder, platformName, "libroukavici.dylib"));
+            PublicAdditionalLibraries.Add(Path.Combine(libFolder, platformName, "libbluetoothserialport.a"));
         }
-
-        PublicLibraryPaths.Add(Path.Combine(libFolder, platformName));
-        PublicAdditionalLibraries.Add(string.Concat("roukavici", staticExt));
-        PublicAdditionalLibraries.Add(string.Concat("bluetoothserialport", staticExt));
-        CopyToProjectBinaries(Path.Combine(libFolder, string.Concat(platformName, "/roukavici", dynExt)), Target);
     }
 
     private void CopyToProjectBinaries(string Filepath, ReadOnlyTargetRules Target)
