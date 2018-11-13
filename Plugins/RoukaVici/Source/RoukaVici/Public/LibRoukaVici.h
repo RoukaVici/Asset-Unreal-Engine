@@ -26,7 +26,7 @@ public:
 	 * @return false otherwise.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
-	static bool loadLib();
+	static bool LoadLib();
 
 	/**
 	 * @brief Call the InitRVici function from the API.
@@ -34,14 +34,14 @@ public:
 	 * @return int see the RoukaVici API's documentation for more information.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
-	static int initLib();
+	static int InitLib();
 
 	/**
 	 * @brief Call the StopRVici function from the API.
 	 * 
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
-	static void callStopLib();
+	static void CallStopLib();
 
 	/**
 	 * @brief Call the Vibrate function from the API.
@@ -51,7 +51,7 @@ public:
 	 * @return int see the RoukaVici API's documentation for more information.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
-	static int callVibrate(int motor, int intensity);
+	static int CallVibrate(int motor, int intensity);
 
 	/**
 	 * @brief Call the SetLogMode function from the API.
@@ -59,11 +59,14 @@ public:
 	 * @param mode see the RoukaVici API's ddocumentation for more information.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
-	static void callSetLogMode(const int mode);
+	static void CallSetLogMode(const int mode);
 
 	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
-	static int callChangeDeviceManager(const int dm);
+	static int CallChangeDeviceManager(const int dm);
 	
 	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
-	static int callFindDevice();
+	static int CallFindDevice();
+
+	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
+	static int TryConnectingWithBluetooth();
 };

@@ -89,6 +89,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "RoukaVici Manager")
 	static void HidePatternEditor();
 
+	UFUNCTION(BlueprintCallable, Category = "RoukaVici Manager")
+	static void TogglePatternEditor();
+
 	/**
 	* Select another pattern from the list.
 	* This pattern will be used for the next

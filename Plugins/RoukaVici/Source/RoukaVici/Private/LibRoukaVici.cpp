@@ -7,10 +7,10 @@
 void CallbackDebug(const char *str)
 {
 	FString msg(str);
-	UE_LOG(LogTemp, Warning, TEXT("RVLog: %s"), *msg);
+	UE_LOG(LogTemp, Warning, TEXT("%s"), *msg);
 }
 
-bool ULibRoukaVici::loadLib()
+bool ULibRoukaVici::LoadLib()
 {
 	SetLogMode(2);
 	RegisterDebugCallback(&CallbackDebug);
@@ -20,39 +20,43 @@ bool ULibRoukaVici::loadLib()
 		UE_LOG(LogTemp, Warning, TEXT("Error while loading Lib RoukaVici"));
 		return false;
 	}
-	ChangeDeviceManager(2);
-	FindDevice();
 
 	UE_LOG(LogTemp, Warning, TEXT("Lib RoukaVici was successfuly loaded"));
 	return true;
 }
 
-int ULibRoukaVici::initLib()
+int ULibRoukaVici::InitLib()
 {
 	return (InitRVici());
 }
 
-void ULibRoukaVici::callStopLib()
+void ULibRoukaVici::CallStopLib()
 {
 	StopRVici();
 }
 
-int ULibRoukaVici::callVibrate(int motor, int intensity)
+int ULibRoukaVici::CallVibrate(int motor, int intensity)
 {
 	return Vibrate(motor, intensity);
 }
 
-void ULibRoukaVici::callSetLogMode(const int mode)
+void ULibRoukaVici::CallSetLogMode(const int mode)
 {
 	SetLogMode(mode);
 }
 
-int ULibRoukaVici::callChangeDeviceManager(const int dm)
+int ULibRoukaVici::CallChangeDeviceManager(const int dm)
 {
-	return (ChangeDeviceManager(dm));
+	return(ChangeDeviceManager(dm));
 }
 
-int ULibRoukaVici::callFindDevice()
+int ULibRoukaVici::CallFindDevice()
 {
-	return (FindDevice());
+	return(FindDevice());
+}
+
+int ULibRoukaVici::TryConnectingWithBluetooth()
+{
+	ChangeDeviceManager(2);
+	return(FindDevice());
 }

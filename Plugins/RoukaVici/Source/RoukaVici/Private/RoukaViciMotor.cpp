@@ -34,7 +34,7 @@ void ARoukaViciMotor::Tick(float DeltaTime)
 		UE_LOG(LogTemp, Warning, TEXT("Vibrating motor ID %d for an intensity of %d"), id, (255 * currentStepIntensity) / 100);
         
 		// Vibrate at a specific calculated intensity
-		ULibRoukaVici::callVibrate(id, (255 * currentStepIntensity) / 100);
+		ULibRoukaVici::CallVibrate(id, (255 * currentStepIntensity) / 100);
 
 		// Iterate in the steps provided in the patterns
 		currentStepIndex = (currentStepIndex == manager->patterns[manager->patternID].fingers[id].pattern.Num() - 1 ? 0 : ++currentStepIndex);
@@ -53,7 +53,7 @@ void ARoukaViciMotor::sendVibrationCommand(int fingerId)
 
 void ARoukaViciMotor::stopVibrationCommand(int fingerId)
 {
-	ULibRoukaVici::callVibrate(id, 0);
+	ULibRoukaVici::CallVibrate(id, 0);
 	UE_LOG(LogTemp, Warning, TEXT("Stopped Vibrating for motor with id: %d"), fingerId);
 	isVibrating = false;
 	id = fingerId;

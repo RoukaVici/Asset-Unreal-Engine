@@ -24,7 +24,7 @@ URoukaViciManager::URoukaViciManager()
 void URoukaViciManager::BeginPlay()
 {
 	Super::BeginPlay();
-	ULibRoukaVici::loadLib();
+	ULibRoukaVici::LoadLib();
 }
 
 // Called every frame
@@ -36,7 +36,7 @@ void URoukaViciManager::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 void URoukaViciManager::BeginDestroy()
 {
 	Super::BeginDestroy();
-	ULibRoukaVici::callStopLib();
+	//ULibRoukaVici::CallStopLib();
 }
 
 void URoukaViciManager::DisplayPatternEditor()
@@ -47,6 +47,15 @@ void URoukaViciManager::DisplayPatternEditor()
 void URoukaViciManager::HidePatternEditor()
 {
 	patternEditor->SetVisibility(ESlateVisibility::Hidden);
+}
+
+void URoukaViciManager::TogglePatternEditor()
+{
+	if (patternEditor->GetVisibility() == ESlateVisibility::Hidden)
+		patternEditor->SetVisibility(ESlateVisibility::Visible);
+	else
+		patternEditor->SetVisibility(ESlateVisibility::Hidden);
+
 }
 
 void URoukaViciManager::SetVibrationPattern(int ID)
