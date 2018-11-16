@@ -4,7 +4,28 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "Multithreaded.h"
+#include "Async/AsyncWork.h"
 #include "LibRoukaVici.generated.h"
+
+
+class MultiThreadedTask : public FNonAbandonableTask
+{
+public:
+	MultiThreadedTask(UObject *object) : object(object) {}
+
+	UObject *object;
+
+	FORCEINLINE TStatId GetStatId() const
+	{
+		RETURN_QUICK_DECLARE_CYCLE_STAT(MultiThreadedTask, STATGROUP_ThreadPoolAsyncTasks);
+	}
+
+	void DoWork()
+	{
+		IMultithreaded::Execute_MultiThreadedFunction(object);
+	}
+};
 
 /**
  * @brief The Blueprint function library containing
@@ -69,4 +90,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
 	static int TryConnectingWithBluetooth();
+
+	UFUNCTION(BlueprintCallable)
+	static void CallMultithreadedFunction(UObject *object);
+
 };
