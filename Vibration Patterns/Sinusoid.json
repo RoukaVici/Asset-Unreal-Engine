@@ -1,7 +1,7 @@
 {
 	"name": "Sinusoid",
-	"delay": 0.69999998807907104,
-	"fingers": [
+	"duration": 0.69999998807907104,
+	"motors": [
 		{
 			"id": 0,
 			"pattern": [ 25, 47, 36, 30, 20, 10 ]
