@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "VibrationPatternParser.h"
 #include "LibRoukaVici.h"
+#include "RoukaViciWidget.h"
 #include "RoukaViciManager.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpdateUIDelegate);
@@ -73,28 +74,28 @@ public:
 	static URoukaViciManager *GetInstance() { return instance; }
 
 	// A pointer to the pattern editor Widget
-	static UVibrationSelectionWidget *patternEditor;
+	static URoukaViciWidget *UI;
 
 	/**
 	 * @brief Display the pattern editor.
 	 * 
 	 */
 	UFUNCTION(BlueprintCallable, Category = "RoukaVici Manager")
-	static void DisplayPatternEditor();
+	static void DisplayUI();
 
 	/**
 	 * @brief Hide the pattern editor.
 	 * 
 	 */
 	UFUNCTION(BlueprintCallable, Category = "RoukaVici Manager")
-	static void HidePatternEditor();
+	static void HideUI();
 
 	/**
 	 * @brief Toggle (Hide / Show) the pattern editor.
 	 *
 	 */
 	UFUNCTION(BlueprintCallable, Category = "RoukaVici Manager")
-	static void TogglePatternEditor();
+	static void ToggleUI();
 
 	/**
 	* Select another pattern from the list.

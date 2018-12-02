@@ -8,7 +8,7 @@
 #include "Runtime/UMG/Public/Blueprint/UserWidget.h"
 #include "VibrationPatternParser.generated.h"
 
-class UVibrationSelectionWidget;
+class RoukaViciWidget;
 class URoukaViciManager;
 
 /**

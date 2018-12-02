@@ -4,7 +4,7 @@
 #include "Json.h"
 #include "Runtime/JsonUtilities/Public/JsonObjectConverter.h"
 
-#include "VibrationSelectionWidget.h"
+#include "RoukaViciWidget.h"
 #include "RoukaViciManager.h"
 
 FmPattern::FmPattern()
@@ -45,14 +45,14 @@ void UVibrationPatternParser::BeginPlay()
 	else
 		patterns = URoukaViciManager::instance->patterns;
 
-	// Instantiate the Widget for the pattern editor, and display it.
-	URoukaViciManager::patternEditor = CreateWidget<UVibrationSelectionWidget>(GetOwner()->GetGameInstance(), widgetTemplate);
-	if (URoukaViciManager::patternEditor)
+	// Instantiate the UI Widget.
+	URoukaViciManager::UI = CreateWidget<URoukaViciWidget>(GetOwner()->GetGameInstance(), widgetTemplate);
+	if (URoukaViciManager::UI)
 	{
-		URoukaViciManager::patternEditor->AddToViewport();
-		URoukaViciManager::patternEditor->patterns = patterns;
-		URoukaViciManager::patternEditor->manager = URoukaViciManager::instance;
-		URoukaViciManager::patternEditor->createUIDelegate.Broadcast();
+		URoukaViciManager::UI->AddToViewport();
+		URoukaViciManager::UI->patterns = patterns;
+		URoukaViciManager::UI->manager = URoukaViciManager::instance;
+		URoukaViciManager::UI->createUIDelegate.Broadcast();
 	}
 }
 

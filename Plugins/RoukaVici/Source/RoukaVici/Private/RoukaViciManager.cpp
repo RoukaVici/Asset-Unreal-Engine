@@ -4,10 +4,10 @@
 
 #include "Runtime/Core/Public/HAL/PlatformFilemanager.h"
 #include "Runtime/JsonUtilities/Public/JsonObjectConverter.h"
-#include "VibrationSelectionWidget.h"
+#include "RoukaViciWidget.h"
 
 URoukaViciManager *URoukaViciManager::instance = NULL;
-UVibrationSelectionWidget *URoukaViciManager::patternEditor = NULL;
+URoukaViciWidget *URoukaViciManager::UI = NULL;
 
 // Sets default values
 URoukaViciManager::URoukaViciManager()
@@ -39,23 +39,19 @@ void URoukaViciManager::BeginDestroy()
 	//ULibRoukaVici::CallStopLib();
 }
 
-void URoukaViciManager::DisplayPatternEditor()
+void URoukaViciManager::DisplayUI()
 {
-	patternEditor->SetVisibility(ESlateVisibility::Visible);
+	UI->SetVisibility(ESlateVisibility::Visible);
 }
 
-void URoukaViciManager::HidePatternEditor()
+void URoukaViciManager::HideUI()
 {
-	patternEditor->SetVisibility(ESlateVisibility::Hidden);
+	UI->SetVisibility(ESlateVisibility::Hidden);
 }
 
-void URoukaViciManager::TogglePatternEditor()
+void URoukaViciManager::ToggleUI()
 {
-	if (patternEditor->GetVisibility() == ESlateVisibility::Hidden)
-		patternEditor->SetVisibility(ESlateVisibility::Visible);
-	else
-		patternEditor->SetVisibility(ESlateVisibility::Hidden);
-
+	UI->toggleUIDelegate.Broadcast();
 }
 
 void URoukaViciManager::SetVibrationPattern(int ID)

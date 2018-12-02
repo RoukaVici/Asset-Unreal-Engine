@@ -13,7 +13,7 @@
 
 #include "VibrationPatternParser.h"
 
-#include "VibrationSelectionWidget.generated.h"
+#include "RoukaViciWidget.generated.h"
 
 
 /**
@@ -33,10 +33,10 @@
 */
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FCreateUIDelegate);
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FToggleUIDelegate);
 
 UCLASS()
-class ROUKAVICI_API UVibrationSelectionWidget : public UUserWidget
+class ROUKAVICI_API URoukaViciWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
@@ -53,6 +53,10 @@ public:
 	// An event dispatcher used to initalize content in the UI (After pattern parsing)
 	UPROPERTY(BlueprintAssignable, Category = "RoukaVici UI")
 	FCreateUIDelegate createUIDelegate;
+
+	// An event dispatcher used to toggle the UI
+	UPROPERTY(BlueprintAssignable, Category = "RoukaVici UI")
+	FToggleUIDelegate toggleUIDelegate;
 
 protected:
 
