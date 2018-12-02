@@ -62,6 +62,7 @@ void UVibrationPatternParser::CheckPatternsFolder(const FString &folderPath)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Vibration Patterns not found, creating default profile"));
 
+		// Instantiate a default pattern
 		FmPattern elemP;
 		elemP.name = "Default";
 		elemP.duration = 0.5f;
@@ -101,6 +102,7 @@ void UVibrationPatternParser::ParseData()
 	IFileManager& FileManager = IFileManager::Get();
 	FileManager.FindFiles(Files, *(folderPath + "*.json"), true, false);
 
+	// Limit the amount of patterns to parse
 	int patternNbLimit = 10;
 	for (FString path: Files)
 	{

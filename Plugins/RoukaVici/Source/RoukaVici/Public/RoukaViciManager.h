@@ -89,6 +89,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "RoukaVici Manager")
 	static void HidePatternEditor();
 
+	/**
+	 * @brief Toggle (Hide / Show) the pattern editor.
+	 *
+	 */
 	UFUNCTION(BlueprintCallable, Category = "RoukaVici Manager")
 	static void TogglePatternEditor();
 
