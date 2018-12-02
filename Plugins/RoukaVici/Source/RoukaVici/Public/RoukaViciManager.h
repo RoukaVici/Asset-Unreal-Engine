@@ -115,7 +115,15 @@ public:
 	 * @param eidtedPattern 
 	 */
 	UFUNCTION(BlueprintCallable, Category = "RoukaVici Manager")
-	void SavePattern(const FmPattern &pattern, int eidtedPattern);
+	void SavePattern(const FmPattern &pattern, int editedPattern);
+
+	/**
+	 * @brief Delete the desired pattern
+	 *
+	 * @param patternToDelete
+	 */
+	UFUNCTION(BlueprintCallable, Category = "RoukaVici Manager")
+	void DeletePattern(int patternToDelete);
 
 	// The ID of the currently selected pattern
 	UPROPERTY(BlueprintReadOnly, Category = "RoukaVici Manager")

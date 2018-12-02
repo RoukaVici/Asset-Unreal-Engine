@@ -72,17 +72,42 @@ void URoukaViciManager::SavePattern(const FmPattern &pattern, int editedPattern)
 		FPaths::NormalizeDirectoryName(folderPath);
 	}
 	folderPath += "/Vibration Patterns/";
-	FString oldPattern = folderPath + patterns[editedPattern].name + ".json";
 	FString newPattern = folderPath + pattern.name + ".json";
-
-	if (oldPattern != newPattern)
-		FPlatformFileManager::Get().GetPlatformFile().DeleteFile(*oldPattern);
-
 	FString OutputString;
-	FJsonObjectConverter::UStructToJsonObjectString(pattern, OutputString, 0, 0, 0, NULL, true);
+
+	if (editedPattern < 0)
+	{
+		patterns.Add(pattern);
+		FJsonObjectConverter::UStructToJsonObjectString(pattern, OutputString, 0, 0, 0, NULL, true);
+	}
+	else
+	{
+		FString oldPattern = folderPath + patterns[editedPattern].name + ".json";
+		if (oldPattern != newPattern)
+			FPlatformFileManager::Get().GetPlatformFile().DeleteFile(*oldPattern);
+
+		FJsonObjectConverter::UStructToJsonObjectString(pattern, OutputString, 0, 0, 0, NULL, true);
+		patterns[editedPattern] = pattern;
+	}
+
 	FFileHelper::SaveStringToFile(OutputString, *newPattern);
 
-	patterns[editedPattern] = pattern;
-
 	updateUIDelegate.Broadcast();
+}
+
+void URoukaViciManager::DeletePattern(int patternToDelete)
+{
+	FString folderPath;
+	if (GetWorld()->WorldType == EWorldType::PIE)
+	{
+		folderPath = FPaths::ProjectDir();
+		FPaths::NormalizeDirectoryName(folderPath);
+	}
+	folderPath += "/Vibration Patterns/";
+	if (patternToDelete >= patterns.Num())
+		return;
+	FString pattern = folderPath + patterns[patternToDelete].name + ".json";
+	FPlatformFileManager::Get().GetPlatformFile().DeleteFile(*pattern);
+
+	patterns.RemoveAt(patternToDelete);
 }

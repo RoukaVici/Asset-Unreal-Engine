@@ -20,7 +20,7 @@ struct FmMotor
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
 	int id; ///< ID of the motor
 
 	UPROPERTY(BluePrintReadWrite, VisibleAnywhere)

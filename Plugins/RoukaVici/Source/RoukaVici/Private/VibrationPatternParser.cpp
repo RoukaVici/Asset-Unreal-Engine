@@ -101,8 +101,11 @@ void UVibrationPatternParser::ParseData()
 	IFileManager& FileManager = IFileManager::Get();
 	FileManager.FindFiles(Files, *(folderPath + "*.json"), true, false);
 
+	int patternNbLimit = 10;
 	for (FString path: Files)
 	{
+		if (patternNbLimit-- < 0)
+			break;
 		// Create the path for each Json file in the folder.
 		FString data;
 		FFileHelper::LoadFileToString(data, *(folderPath + path));
