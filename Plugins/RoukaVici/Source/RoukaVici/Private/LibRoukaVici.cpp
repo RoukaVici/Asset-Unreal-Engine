@@ -18,11 +18,11 @@ bool ULibRoukaVici::LoadLib()
 	if (InitRVici())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Error while loading Lib RoukaVici"));
-		return false;
+		return (false);
 	}
 
 	UE_LOG(LogTemp, Warning, TEXT("Lib RoukaVici was successfuly loaded"));
-	return true;
+	return (true);
 }
 
 int ULibRoukaVici::InitLib()
@@ -37,7 +37,7 @@ void ULibRoukaVici::CallStopLib()
 
 int ULibRoukaVici::CallVibrate(int motor, int intensity)
 {
-	return Vibrate(motor, intensity);
+	return (Vibrate(motor, intensity));
 }
 
 void ULibRoukaVici::CallSetLogMode(const int mode)
@@ -47,18 +47,23 @@ void ULibRoukaVici::CallSetLogMode(const int mode)
 
 int ULibRoukaVici::CallChangeDeviceManager(const int dm)
 {
-	return(ChangeDeviceManager(dm));
+	return (ChangeDeviceManager(dm));
 }
 
 int ULibRoukaVici::CallFindDevice()
 {
-	return(FindDevice());
+	return (FindDevice());
+}
+
+int ULibRoukaVici::CallStatus()
+{
+	return (Status());
 }
 
 int ULibRoukaVici::TryConnectingWithBluetooth()
 {
 	ChangeDeviceManager(2);
-	return(FindDevice());
+	return (FindDevice());
 }
 
 void ULibRoukaVici::CallMultithreadedFunction(UObject *object)

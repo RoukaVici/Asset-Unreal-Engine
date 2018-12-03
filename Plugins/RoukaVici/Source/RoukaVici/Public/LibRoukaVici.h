@@ -103,6 +103,14 @@ public:
 	static int CallFindDevice();
 
 	/**
+	 * @brief Call the Status function from the API.
+	 *
+	 * @return int see the RoukaVici API's documentation for more information.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Lib RoukaVici")
+	static int CallStatus();
+
+	/**
 	 * @brief Change device manager to bluetooth and search for devices.
 	 *
 	 * @return 0 on success, otherwise refer to RoukaVici API's documentation.
