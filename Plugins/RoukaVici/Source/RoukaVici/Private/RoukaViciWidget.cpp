@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "VibrationSelectionWidget.h"
+#include "RoukaViciWidget.h"
 
-void UVibrationSelectionWidget::NativeConstruct()
+void URoukaViciWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 

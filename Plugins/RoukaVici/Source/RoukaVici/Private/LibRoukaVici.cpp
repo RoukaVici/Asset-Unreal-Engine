@@ -60,3 +60,8 @@ int ULibRoukaVici::TryConnectingWithBluetooth()
 	ChangeDeviceManager(2);
 	return(FindDevice());
 }
+
+void ULibRoukaVici::CallMultithreadedFunction(UObject *object)
+{
+	(new FAutoDeleteAsyncTask<MultiThreadedTask>(object))->StartBackgroundTask();
+}
